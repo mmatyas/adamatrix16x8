@@ -137,19 +137,6 @@ function calc_string_and_send() {
 function rotate() {
 	var canvas = document.getElementById('draw').classList.toggle('rotated');
 	var canvas_container = document.getElementById('draw-container').classList.toggle('rotated');
-	// var deg = rotated ? 0 : 90;
-//
-	// canvas.style.webkitTransform = 'rotate('+deg+'deg)';
-	// canvas.style.mozTransform    = 'rotate('+deg+'deg)';
-	// canvas.style.msTransform     = 'rotate('+deg+'deg)';
-	// canvas.style.oTransform      = 'rotate('+deg+'deg)';
-	// canvas.style.transform       = 'rotate('+deg+'deg)';
-//
-	// if (rotated)
-		// canvas_container.style.height = '320px';
-	// else
-		// canvas_container.style.height = '640px';
-
 	rotated = !rotated;
 }
 

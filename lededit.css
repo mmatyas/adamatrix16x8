@@ -17,10 +17,6 @@
 
 #draw {
 	transform-origin: 160px 160px;
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
 }
 
 #draw.rotated {
@@ -34,15 +30,16 @@
 #draw-container {
 	width: 640px;
 	height: 320px;
-	/*display: flex;
-	justify-content: center;
-	align-items: center;*/
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
 }
 
 #draw-container.rotated {
 	height: 640px;
+}
+
+#draw,
+#draw-container {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
