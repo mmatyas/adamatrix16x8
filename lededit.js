@@ -1,7 +1,7 @@
 var matrix;
 var canvas
 var previewbox;
-var radgrad;
+var rotated = false;
 var cell_dim_px = 40;
 var bt_handle;
 
@@ -30,6 +30,11 @@ window.onload = function() {
 		y -= canvas.offsetTop;
 		var row = Math.floor(y / cell_dim_px);
 		var col = Math.floor(x / cell_dim_px);
+		if (rotated) {
+			var tmp = col;
+			col = row;
+			row = 7 - tmp;
+		}
 
 		matrix[row][col] = !matrix[row][col];
 		canvas_redraw();
@@ -127,6 +132,25 @@ function calc_string_and_send() {
 	textfield.value = result_array.toString();
 
 	bt_send(result_array);
+}
+
+function rotate() {
+	var canvas = document.getElementById('draw').classList.toggle('rotated');
+	var canvas_container = document.getElementById('draw-container').classList.toggle('rotated');
+	// var deg = rotated ? 0 : 90;
+//
+	// canvas.style.webkitTransform = 'rotate('+deg+'deg)';
+	// canvas.style.mozTransform    = 'rotate('+deg+'deg)';
+	// canvas.style.msTransform     = 'rotate('+deg+'deg)';
+	// canvas.style.oTransform      = 'rotate('+deg+'deg)';
+	// canvas.style.transform       = 'rotate('+deg+'deg)';
+//
+	// if (rotated)
+		// canvas_container.style.height = '320px';
+	// else
+		// canvas_container.style.height = '640px';
+
+	rotated = !rotated;
 }
 
 function bt_connect() {
