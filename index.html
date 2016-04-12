@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>LEDEdit</title>
+	<script type="text/javascript" src="lededit.js"></script>
+	<link rel="stylesheet" type="text/css" href="lededit.css">
+</head>
+<body>
+
+<canvas id="draw" width="640" height="320"></canvas>
+<div id="preview"></div>
+<br>
+<input type="text" id="result" readonly><br>
+<input id="service" type="text" autofocus placeholder="Bluetooth Service" value="battery_service">
+<input id="characteristic" type="text" placeholder="Bluetooth Characteristic">
+<input id="devicename" type="text" placeholder="Device Name" value="raspberry">
+<button type="button" onclick="bt_connect()">Connect Device</button><br>
+<button type="button" onclick="bt_connect_default()">Connect Device (default)</button><br>
+
+</body>
+</html>

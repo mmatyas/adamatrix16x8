@@ -1,0 +1,14 @@
+#result {
+	width: 640px;
+	padding: 0;
+	border: 0;
+}
+
+#preview {
+	width: 640px;
+	height: 320px;
+	transform-origin: center center;
+	transform: scale(0.5, 0.5) rotate(90deg);
+	display: none;
+	margin-left: -230px;
+}
