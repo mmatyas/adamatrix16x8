@@ -33,11 +33,11 @@ window.onload = function() {
 
 		matrix[row][col] = !matrix[row][col];
 		canvas_redraw();
-		calc_array();
+		calc_string_and_send();
 	}, false);
 
 	canvas_redraw();
-	calc_array();
+	calc_string_and_send();
 }
 
 function recreate_matrix() {
@@ -56,14 +56,12 @@ function fill_matrix(bt_arr) {
 
 	for (var row = 0; row < 8; row++) {
 		var val = bt_arr[idx].charCodeAt(0);
-		console.log(val);
 		for (var col = 0; col < 8; col++)
 			matrix[row][col] = ((val & 1 << col) > 0);
 
 		idx++;
 
 		val = bt_arr[idx].charCodeAt(0);
-		console.log(val);
 		for (var col = 0; col < 8; col++)
 			matrix[row][col + 8] = ((val & 1 << col) > 0);
 
@@ -74,7 +72,7 @@ function fill_matrix(bt_arr) {
 function reset() {
 	recreate_matrix();
 	canvas_redraw();
-	calc_array();
+	calc_string_and_send();
 }
 
 function canvas_redraw() {
@@ -109,7 +107,7 @@ function canvas_redraw() {
 	previewbox.style.background='url('+canvas.toDataURL()+')'
 }
 
-function calc_array() {
+function calc_string_and_send() {
 	var result_array = [];
 	for (var row = 0; row < 8; row++) {
 		var val = 0;
@@ -183,7 +181,6 @@ function bt_connect() {
 	}
 
 	var read_arr = bt_handle.readValue();
-	//console.log(read_arr);
 	fill_matrix(read_arr);
 	canvas_redraw();
 }
