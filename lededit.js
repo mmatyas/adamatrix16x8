@@ -6,12 +6,7 @@ var cell_dim_px = 40;
 var bt_handle;
 
 window.onload = function() {
-	matrix = new Array(8);
-	for (var row = 0; row < 8; row++) {
-		matrix[row] = new Array(16);
-		for (var col = 0; col < 16; col++)
-			matrix[row][col] = false;
-	}
+	recreate_matrix();
 
 	previewbox = document.getElementById("preview");
 
@@ -41,6 +36,43 @@ window.onload = function() {
 		calc_array();
 	}, false);
 
+	canvas_redraw();
+	calc_array();
+}
+
+function recreate_matrix() {
+	matrix = new Array(8);
+	for (var row = 0; row < 8; row++) {
+		matrix[row] = new Array(16);
+		for (var col = 0; col < 16; col++)
+			matrix[row][col] = false;
+	}
+}
+
+function fill_matrix(bt_arr) {
+	recreate_matrix();
+
+	var idx = 0;
+
+	for (var row = 0; row < 8; row++) {
+		var val = bt_arr[idx].charCodeAt(0);
+		console.log(val);
+		for (var col = 0; col < 8; col++)
+			matrix[row][col] = ((val & 1 << col) > 0);
+
+		idx++;
+
+		val = bt_arr[idx].charCodeAt(0);
+		console.log(val);
+		for (var col = 0; col < 8; col++)
+			matrix[row][col + 8] = ((val & 1 << col) > 0);
+
+		idx++;
+	}
+}
+
+function reset() {
+	recreate_matrix();
 	canvas_redraw();
 	calc_array();
 }
@@ -147,7 +179,13 @@ function bt_connect() {
 	}
 	catch(err) {
 		console.log(err);
+		return;
 	}
+
+	var read_arr = bt_handle.readValue();
+	//console.log(read_arr);
+	fill_matrix(read_arr);
+	canvas_redraw();
 }
 
 function bt_connect_default() {

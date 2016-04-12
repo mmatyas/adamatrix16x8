@@ -12,11 +12,14 @@
 <div id="preview"></div>
 <br>
 <input type="text" id="result" readonly><br>
-<input id="service" type="text" autofocus placeholder="Bluetooth Service" value="battery_service">
-<input id="characteristic" type="text" placeholder="Bluetooth Characteristic">
-<input id="devicename" type="text" placeholder="Device Name" value="raspberry">
-<button type="button" onclick="bt_connect()">Connect Device</button><br>
-<button type="button" onclick="bt_connect_default()">Connect Device (default)</button><br>
+<button onclick="reset()">clear matrix</button>
+<br>
+<br>
+<input id="service" type="text" autofocus placeholder="BT service" value="battery_service">
+<input id="characteristic" type="text" placeholder="BT characteristic"  value="battery_level">
+<input id="devicename" type="text" placeholder="BT device name" value="">
+<button onclick="bt_connect()">Connect Device</button><br>
+<button onclick="bt_connect_default()">Connect Device (default)</button><br>
 
 </body>
 </html>
