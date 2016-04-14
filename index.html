@@ -11,18 +11,21 @@
 <div id="draw-container">
 <canvas id="draw" width="640" height="320"></canvas>
 </div>
-<p>
 <label for="result_field">byte array:</label>
 <input type="text" id="result_field" readonly><br>
-</p>
 <button onclick="reset()">clear matrix</button>
 <button onclick="rotate()">rotate</button>
+
 <br>
 <br>
+
+<h3>Bluetooth connection</h3>
+<div id="btconnect">
 <input id="service" type="text" autofocus placeholder="BT service" value="battery_service">
 <input id="characteristic" type="text" placeholder="BT characteristic"  value="battery_level">
 <input id="devicename" type="text" placeholder="BT device name" value="">
-<button onclick="bt_connect()">Connect Device</button>
+<div onclick="bt_connect()">Connect Device</div>
+</div>
 
 </body>
 </html>

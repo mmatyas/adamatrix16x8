@@ -1,14 +1,18 @@
-#result_field,
-#draw-container {
-	width: 640px;
+html {
+	font-family: "Droid Sans", sans-serif;
+	background-color: #f9f9f9;
+}
 
+input {
+	padding: 5px;
+	font-size: 1em;
+	font-family: monospace;
 }
 
 #result_field {
-	padding: 0;
 	border: 0;
-	font-size: 1em;
-	font-family: monospace;
+	margin: 1em 0;
+	width: 320px;
 }
 
 #draw {
@@ -24,6 +28,7 @@
 }
 
 #draw-container {
+	width: 640px;
 	height: 320px;
 }
 
@@ -37,4 +42,30 @@
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
+}
+
+#btconnect input {
+	margin-bottom: 5px;
+	border: 1px solid black;
+	float: left;
+	clear: both;
+	width: 220px;
+}
+
+#btconnect div {
+	color: white;
+	width: 220px;
+	height: 75px;
+	line-height: 80px;
+	text-align: center;
+	font-size: 1.2em;
+	padding: 5px;
+	background-color: #5bc0de;
+	border-bottom: 5px solid #428bca;
+	margin-left: 240px;
+	cursor: pointer;
+}
+
+#btconnect div:hover {
+	background-color: #37b2d7;
 }
