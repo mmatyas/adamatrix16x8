@@ -127,6 +127,16 @@ function rotate() {
 	rotated = !rotated;
 }
 
+function flip() {
+	for (var row = 0; row < 4; row++) {
+		var tmp_row = matrix[row];
+		matrix[row] = matrix[7 - row];
+		matrix[7 - row] = tmp_row;
+	}
+	canvas_redraw();
+	calc_string_and_send();
+}
+
 function fill_matrix(bt_arr) {
 	recreate_matrix();
 
