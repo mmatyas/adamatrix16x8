@@ -196,15 +196,18 @@ function bt_connect() {
 		if (!bt_handle)
 			throw 'Characteristic not found';
 		log('Found a Characteristic!');
+
+		var read_arr = bt_handle.readValue();
+		if (read_arr)
+			throw "Failed to read value"
+
+		fill_matrix(read_arr);
+		canvas_redraw();
 	}
 	catch(err) {
 		log("Error: " + err);
 		return;
 	}
-
-	var read_arr = bt_handle.readValue();
-	fill_matrix(read_arr);
-	canvas_redraw();
 }
 
 function bt_send(arr) {
