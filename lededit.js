@@ -18,10 +18,10 @@ window.onload = function() {
 		else { // Firefox method to get the position
 			x = event.clientX
 				+ (document.body.scrollLeft || 0)
-				+ (document.documentElement.scrollLeft || -10);
+				+ (document.documentElement.scrollLeft || 0);
 			y = event.clientY
 				+ (document.body.scrollTop || 0)
-				+ (document.documentElement.scrollTop || -10);
+				+ (document.documentElement.scrollTop || 0);
 		}
 		x -= canvas.offsetLeft;
 		y -= canvas.offsetTop;
