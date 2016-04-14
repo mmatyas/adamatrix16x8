@@ -66,10 +66,22 @@ input {
 	border-bottom: 5px solid #428bca;
 	margin-left: 240px;
 	cursor: pointer;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 #btconnect div:hover {
 	background-color: #37b2d7;
+}
+
+textarea {
+	width: 465px;
+	height: 10em;
 }
 
 #footer {

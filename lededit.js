@@ -3,8 +3,11 @@ var canvas
 var rotated = false;
 var cell_dim_px = 40;
 var bt_handle;
+var log_box;
 
 window.onload = function() {
+	log_box = document.getElementById("log");
+
 	recreate_matrix();
 
 	canvas = document.getElementById("draw");
@@ -40,6 +43,15 @@ window.onload = function() {
 
 	canvas_redraw();
 	calc_string_and_send();
+
+
+	if (!window.navigator.bluetooth)
+		log("Warning: The WebBluetooth API is not available in this browser!");
+}
+
+function log(string) {
+	log_box.value += string + "\n";
+	log_box.scrollTop = log_box.scrollHeight;
 }
 
 function recreate_matrix() {
@@ -153,7 +165,11 @@ function bt_connect() {
 
 
 	try {
-		console.log('Requesting Bluetooth Device...');
+		log_box.value = "";
+		if (!window.navigator.bluetooth)
+			throw 'The WebBluetooth API is not available in this browser!';
+
+		log('Requesting Bluetooth Device...');
 		device = window.navigator.bluetooth.requestDevice({
 			filters: [{
 				services: [serviceUuid],
@@ -163,26 +179,26 @@ function bt_connect() {
 		if (!device)
 			throw 'Device not found';
 
-		console.log('Connecting to GATTserver on device...');
+		log('Connecting to GATTserver on device...');
 		server = device.gatt.connect();
 		if (!server)
 			throw 'Server not found on device';
 		if (!server.connected)
 			throw 'Server not connected';
 
-		console.log('Requesting Primary Service...');
+		log('Requesting Primary Service...');
 		primaryService = server.getPrimaryService(serviceUuid);
 		if (!primaryService)
 			throw 'Primary Service not found';
 
-		console.log('Requesting Characteristic...');
+		log('Requesting Characteristic...');
 		bt_handle = primaryService.getCharacteristic(characteristicUuid);
 		if (!bt_handle)
 			throw 'Characteristic not found';
-		console.log('Found a Characteristic!');
+		log('Found a Characteristic!');
 	}
 	catch(err) {
-		console.log(err);
+		log("Error: " + err);
 		return;
 	}
 
