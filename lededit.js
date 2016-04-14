@@ -1,14 +1,11 @@
 var matrix;
 var canvas
-var previewbox;
 var rotated = false;
 var cell_dim_px = 40;
 var bt_handle;
 
 window.onload = function() {
 	recreate_matrix();
-
-	previewbox = document.getElementById("preview");
 
 	canvas = document.getElementById("draw");
 	canvas.addEventListener('click', function(event) {
@@ -54,26 +51,6 @@ function recreate_matrix() {
 	}
 }
 
-function fill_matrix(bt_arr) {
-	recreate_matrix();
-
-	var idx = 0;
-
-	for (var row = 0; row < 8; row++) {
-		var val = bt_arr[idx].charCodeAt(0);
-		for (var col = 0; col < 8; col++)
-			matrix[row][col] = ((val & 1 << col) > 0);
-
-		idx++;
-
-		val = bt_arr[idx].charCodeAt(0);
-		for (var col = 0; col < 8; col++)
-			matrix[row][col + 8] = ((val & 1 << col) > 0);
-
-		idx++;
-	}
-}
-
 function reset() {
 	recreate_matrix();
 	canvas_redraw();
@@ -108,8 +85,6 @@ function canvas_redraw() {
 			ctx.fill();
 		}
 	}
-
-	previewbox.style.background='url('+canvas.toDataURL()+')'
 }
 
 function calc_string_and_send() {
@@ -128,7 +103,7 @@ function calc_string_and_send() {
 		result_array.push(val);
 	}
 
-	var textfield = document.getElementById("result");
+	var textfield = document.getElementById("result_field");
 	textfield.value = result_array.toString();
 
 	bt_send(result_array);
@@ -138,6 +113,26 @@ function rotate() {
 	var canvas = document.getElementById('draw').classList.toggle('rotated');
 	var canvas_container = document.getElementById('draw-container').classList.toggle('rotated');
 	rotated = !rotated;
+}
+
+function fill_matrix(bt_arr) {
+	recreate_matrix();
+
+	var idx = 0;
+
+	for (var row = 0; row < 8; row++) {
+		var val = bt_arr[idx].charCodeAt(0);
+		for (var col = 0; col < 8; col++)
+			matrix[row][col] = ((val & 1 << col) > 0);
+
+		idx++;
+
+		val = bt_arr[idx].charCodeAt(0);
+		for (var col = 0; col < 8; col++)
+			matrix[row][col + 8] = ((val & 1 << col) > 0);
+
+		idx++;
+	}
 }
 
 function bt_connect() {
@@ -194,40 +189,6 @@ function bt_connect() {
 	var read_arr = bt_handle.readValue();
 	fill_matrix(read_arr);
 	canvas_redraw();
-}
-
-function bt_connect_default() {
-	var device;
-	var server;
-	var primaryService;
-
-	try {
-		console.log('Requesting Bluetooth Device...');
-		device = window.navigator.bluetooth.requestDevice();
-		if (!device)
-			throw 'Device not found';
-
-		console.log('Connecting to GATTserver on device...');
-		server = device.gatt.connect();
-		if (!server)
-			throw 'Server not found on device';
-		if (!server.connected)
-			throw 'Server not connected';
-
-		console.log('Requesting Primary Service...');
-		primaryService = server.getPrimaryService();
-		if (!primaryService)
-			throw 'Primary Service not found';
-
-		console.log('Requesting Characteristic...');
-		bt_handle = primaryService.getCharacteristic();
-		if (!bt_handle)
-			throw 'Characteristic not found';
-		console.log('Found a Characteristic!');
-	}
-	catch(err) {
-		console.log(err);
-	}
 }
 
 function bt_send(arr) {
