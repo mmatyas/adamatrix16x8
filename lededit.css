@@ -71,3 +71,7 @@ input {
 #btconnect div:hover {
 	background-color: #37b2d7;
 }
+
+#footer {
+	margin-top: 100px;
+}
