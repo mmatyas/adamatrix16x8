@@ -16,6 +16,8 @@ input {
 }
 
 #draw {
+	position: absolute;
+	top: 80px;
 	transform-origin: 160px 160px;
 }
 
