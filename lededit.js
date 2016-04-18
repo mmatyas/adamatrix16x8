@@ -26,8 +26,8 @@ window.onload = function() {
 				+ (document.body.scrollTop || 0)
 				+ (document.documentElement.scrollTop || 0);
 		}
-		x -= canvas.offsetLeft;
-		y -= canvas.offsetTop;
+		x -= canvas.offsetLeft || 0;
+		y -= canvas.offsetTop || 0;
 		var row = Math.floor(y / cell_dim_px);
 		var col = Math.floor(x / cell_dim_px);
 		if (rotated) {
