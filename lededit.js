@@ -192,7 +192,6 @@ function bt_connect() {
 	var primaryService;
 
 	var serviceUuid = document.getElementById('service').value;
-	var serviceUuid = "battery_service";
 	if (serviceUuid.startsWith('0x'))
 		serviceUuid = parseInt(serviceUuid, 16);
 
