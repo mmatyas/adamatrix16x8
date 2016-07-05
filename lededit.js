@@ -96,7 +96,7 @@ Board.prototype.reset = function() {
 
 }
 
-Board.prototype.fill_matrix = function(bt_arr) {
+Board.prototype.fill_mx = function(bt_arr) {
 	this.reset_mx();
 
 	var idx = 0;
