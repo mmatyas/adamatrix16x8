@@ -199,8 +199,6 @@ function bt_connect() {
 	if (characteristicUuid.startsWith('0x'))
 		characteristicUuid = parseInt(characteristicUuid, 16);
 
-	var devicename = document.getElementById('devicename').value;
-
 
 	try {
 		log_box.value = "";
