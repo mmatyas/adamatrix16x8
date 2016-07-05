@@ -210,8 +210,7 @@ function bt_connect() {
 		log('Requesting Bluetooth Device...');
 		device = window.navigator.bluetooth.requestDevice({
 			filters: [{
-				services: [serviceUuid],
-				name: devicename
+				services: [serviceUuid]
 			}]
 		});
 		if (!device)
